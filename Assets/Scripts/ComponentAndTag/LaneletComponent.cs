@@ -2,7 +2,7 @@
 
 namespace ComponentAndTag
 {
-    public class LaneletComponent : IComponentData
+    public struct LaneletComponent : IComponentData
     {
         public int ID;
         public LaneletDataTypes Type;
