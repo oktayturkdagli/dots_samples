@@ -12,7 +12,7 @@ namespace Jobs
     {
         [ReadOnly] public NativeArray<WayData> WayDataNativeArray;
         [ReadOnly] public NativeArray<NodeData> NodeDataNativeArray;
-        [ReadOnly] public NativeList<int> NodeListForWay;
+        [ReadOnly] public NativeList<int> NodeListForWayNativeList;
         [ReadOnly] public int SortKey;
         public EntityCommandBuffer.ParallelWriter Ecb;
         
@@ -33,7 +33,7 @@ namespace Jobs
             {
                 bufferComponent[i] = new NodeBufferComponent
                 {
-                    NodeData = NodeDataNativeArray[NodeListForWay[wayData.SliceStartId + i]]
+                    NodeData = NodeDataNativeArray[NodeListForWayNativeList[wayData.SliceStartId + i]]
                 };
             }
         }

@@ -6,9 +6,9 @@ namespace ComponentAndTag
 {
     public struct LoadComponent : IComponentData
     {
-        public NativeArray<NodeData> NodeData;
-        public NativeArray<WayData> WayData;
-        public NativeArray<LaneletData> LaneletData;
-        public NativeList<int> NodeListForWay;
+        public NativeArray<NodeData> NodeDataNativeArray;
+        public NativeArray<WayData> WayDataNativeArray;
+        public NativeArray<LaneletData> LaneletDataNativeArray;
+        public NativeList<int> NodeListForWayNativeList;
     }
 }

@@ -274,10 +274,10 @@ namespace Mono
         {
             var loadComponent = new LoadComponent
             {
-                NodeData = _nodeDataNativeArray,
-                WayData = _wayDataNativeArray,
-                LaneletData = _laneletDataNativeArray,
-                NodeListForWay = _nodeListForWay
+                NodeDataNativeArray = _nodeDataNativeArray,
+                WayDataNativeArray = _wayDataNativeArray,
+                LaneletDataNativeArray = _laneletDataNativeArray,
+                NodeListForWayNativeList = _nodeListForWay
             };
             
             var entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;

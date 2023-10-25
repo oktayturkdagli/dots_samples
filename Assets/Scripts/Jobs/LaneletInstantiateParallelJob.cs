@@ -13,7 +13,7 @@ namespace Jobs
         [ReadOnly] public NativeArray<NodeData> NodeDataNativeArray;
         [ReadOnly] public NativeArray<WayData> WayDataNativeArray;
         [ReadOnly] public NativeArray<LaneletData> LaneletDataNativeArray;
-        [ReadOnly] public NativeList<int> NodeListForWay;
+        [ReadOnly] public NativeList<int> NodeListForWayNativeList;
         [ReadOnly] public Entity LaneletEntity;
         [ReadOnly] public int SortKey;
         public EntityCommandBuffer.ParallelWriter Ecb;
