@@ -4,7 +4,7 @@ using Unity.Burst;
 using Unity.Entities;
 using Unity.Jobs;
 
-namespace System
+namespace Systems
 {
     [BurstCompile]
     [UpdateInGroup(typeof(InitializationSystemGroup), OrderFirst = true)]
