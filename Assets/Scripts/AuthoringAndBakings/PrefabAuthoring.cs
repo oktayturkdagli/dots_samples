@@ -16,7 +16,7 @@ namespace AuthoringAndBakings
         public override void Bake(PrefabAuthoring authoring)
         {
             DependsOn(authoring.nodePrefab);
-            DependsOn(authoring.nodePrefab);
+            DependsOn(authoring.laneletPrefab);
             
             if (authoring.nodePrefab == null)
             {
