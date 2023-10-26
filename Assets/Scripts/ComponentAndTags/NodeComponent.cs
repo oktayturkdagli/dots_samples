@@ -1,7 +1,7 @@
 ﻿using Unity.Entities;
 using Unity.Mathematics;
 
-namespace ComponentAndTag
+namespace ComponentAndTags
 {
     public struct NodeComponent : IComponentData
     {

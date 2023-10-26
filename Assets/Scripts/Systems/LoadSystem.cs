@@ -1,4 +1,4 @@
-﻿using ComponentAndTag;
+﻿using ComponentAndTags;
 using Jobs;
 using Unity.Burst;
 using Unity.Entities;

@@ -1,5 +1,5 @@
 ﻿using System.Xml;
-using ComponentAndTag;
+using ComponentAndTags;
 using Data;
 using Unity.Collections;
 using Unity.Entities;

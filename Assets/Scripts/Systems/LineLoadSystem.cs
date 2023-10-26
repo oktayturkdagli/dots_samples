@@ -1,5 +1,5 @@
 ﻿using System.Runtime.InteropServices;
-using ComponentAndTag;
+using ComponentAndTags;
 using Data;
 using Unity.Burst;
 using Unity.Entities;

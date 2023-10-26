@@ -1,5 +1,5 @@
-﻿using ComponentAndTag;
-using Extension;
+﻿using ComponentAndTags;
+using Extensions;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;

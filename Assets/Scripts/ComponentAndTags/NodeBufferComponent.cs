@@ -1,7 +1,7 @@
 ﻿using Data;
 using Unity.Entities;
 
-namespace ComponentAndTag
+namespace ComponentAndTags
 {
     public struct NodeBufferComponent : IBufferElementData
     {

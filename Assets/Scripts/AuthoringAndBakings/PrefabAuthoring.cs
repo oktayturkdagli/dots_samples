@@ -1,8 +1,8 @@
-﻿using ComponentAndTag;
+﻿using ComponentAndTags;
 using Unity.Entities;
 using UnityEngine;
 
-namespace AuthoringAndBaking
+namespace AuthoringAndBakings
 {
     public class PrefabAuthoring : MonoBehaviour
     {
