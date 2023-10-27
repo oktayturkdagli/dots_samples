@@ -95,7 +95,10 @@ namespace Systems
                 SortKey = 0,
                 Ecb = ecbForLanelet,
                 LaneletEntity = prefabComponent.LaneletPrefabEntity,
+                NodeDataNativeArray = loadComponent.NodeDataNativeArray,
+                WayDataNativeArray = loadComponent.WayDataNativeArray,
                 LaneletDataNativeArray = loadComponent.LaneletDataNativeArray,
+                NodeListForWayNativeList = loadComponent.NodeListForWayNativeList
             }.Schedule(loadComponent.LaneletDataNativeArray.Length, loadComponent.LaneletDataNativeArray.Length / 4, state.Dependency);
             
             return laneletInstantiateParallelJobHandle;
