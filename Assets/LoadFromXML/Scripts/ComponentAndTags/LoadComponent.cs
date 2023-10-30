@@ -2,7 +2,7 @@
 using Unity.Collections;
 using Unity.Entities;
 
-namespace ComponentAndTags
+namespace LoadFromXML.Scripts.ComponentAndTags
 {
     public struct LoadComponent : IComponentData
     {

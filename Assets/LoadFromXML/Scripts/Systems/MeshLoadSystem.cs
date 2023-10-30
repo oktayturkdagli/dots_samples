@@ -1,5 +1,5 @@
-﻿using ComponentAndTags;
-using Extensions;
+﻿using Extensions;
+using LoadFromXML.Scripts.ComponentAndTags;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
@@ -8,7 +8,7 @@ using Unity.Rendering;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-namespace Systems
+namespace LoadFromXML.Scripts.Systems
 {
     [UpdateInGroup(typeof(SimulationSystemGroup), OrderFirst = true)]
     [BurstCompile]

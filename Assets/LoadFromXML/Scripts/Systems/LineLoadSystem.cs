@@ -1,11 +1,11 @@
 ﻿using System.Runtime.InteropServices;
-using ComponentAndTags;
 using Data;
+using LoadFromXML.Scripts.ComponentAndTags;
 using Unity.Burst;
 using Unity.Entities;
 using UnityEngine;
 
-namespace Systems
+namespace LoadFromXML.Scripts.Systems
 {
     [UpdateInGroup(typeof(InitializationSystemGroup))]
     [UpdateAfter(typeof(LoadSystem))]

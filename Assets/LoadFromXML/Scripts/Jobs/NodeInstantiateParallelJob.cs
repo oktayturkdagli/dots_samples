@@ -1,5 +1,5 @@
-﻿using ComponentAndTags;
-using Data;
+﻿using Data;
+using LoadFromXML.Scripts.ComponentAndTags;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
@@ -7,7 +7,7 @@ using Unity.Jobs;
 using Unity.Mathematics;
 using Unity.Transforms;
 
-namespace Jobs
+namespace LoadFromXML.Scripts.Jobs
 {
     [BurstCompile]
     public struct NodeInstantiateParallelJob : IJobParallelFor

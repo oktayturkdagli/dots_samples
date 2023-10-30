@@ -1,10 +1,10 @@
-﻿using ComponentAndTags;
-using Jobs;
+﻿using LoadFromXML.Scripts.ComponentAndTags;
+using LoadFromXML.Scripts.Jobs;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Jobs;
 
-namespace Systems
+namespace LoadFromXML.Scripts.Systems
 {
     [BurstCompile]
     [UpdateInGroup(typeof(InitializationSystemGroup), OrderFirst = true)]

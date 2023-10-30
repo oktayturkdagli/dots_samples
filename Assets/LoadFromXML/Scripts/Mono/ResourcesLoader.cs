@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Mono
+namespace LoadFromXML.Scripts.Mono
 {
     public class ResourcesLoader : MonoBehaviour
     {

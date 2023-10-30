@@ -1,8 +1,8 @@
-﻿using ComponentAndTags;
+﻿using LoadFromXML.Scripts.ComponentAndTags;
 using Unity.Entities;
 using UnityEngine;
 
-namespace AuthoringAndBakings
+namespace LoadFromXML.Scripts.AuthoringAndBakings
 {
     public class PrefabAuthoring : MonoBehaviour
     {

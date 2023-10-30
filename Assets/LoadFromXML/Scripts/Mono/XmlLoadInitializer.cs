@@ -1,12 +1,12 @@
 ﻿using System.Xml;
-using ComponentAndTags;
 using Data;
+using LoadFromXML.Scripts.ComponentAndTags;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace Mono
+namespace LoadFromXML.Scripts.Mono
 {
     public class XmlLoadInitializer : MonoBehaviour
     {
