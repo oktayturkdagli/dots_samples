@@ -1,7 +1,6 @@
 ﻿using System.Runtime.InteropServices;
-using Data;
-using LoadFromXML.Scripts.Authors;
-using LoadFromXML.Scripts.Component;
+using LoadFromXML.Scripts.Data;
+using LoadFromXML.Scripts.Components;
 using Unity.Burst;
 using Unity.Entities;
 using UnityEngine;

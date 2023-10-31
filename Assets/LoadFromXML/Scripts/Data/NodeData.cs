@@ -1,6 +1,6 @@
 ﻿using Unity.Mathematics;
 
-namespace Data
+namespace LoadFromXML.Scripts.Data
 {
     public struct NodeData
     {

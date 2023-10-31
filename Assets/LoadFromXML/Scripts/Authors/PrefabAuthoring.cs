@@ -1,5 +1,4 @@
-﻿using LoadFromXML.Scripts.Authors;
-using LoadFromXML.Scripts.Component;
+﻿using LoadFromXML.Scripts.Components;
 using Unity.Entities;
 using UnityEngine;
 

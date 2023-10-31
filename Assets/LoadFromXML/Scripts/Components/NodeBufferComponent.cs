@@ -1,7 +1,7 @@
-﻿using Data;
+﻿using LoadFromXML.Scripts.Data;
 using Unity.Entities;
 
-namespace LoadFromXML.Scripts.Component
+namespace LoadFromXML.Scripts.Components
 {
     public struct NodeBufferComponent : IBufferElementData
     {

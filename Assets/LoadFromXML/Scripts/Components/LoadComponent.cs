@@ -1,8 +1,8 @@
-﻿using Data;
+﻿using LoadFromXML.Scripts.Data;
 using Unity.Collections;
 using Unity.Entities;
 
-namespace LoadFromXML.Scripts.Component
+namespace LoadFromXML.Scripts.Components
 {
     public struct LoadComponent : IComponentData
     {

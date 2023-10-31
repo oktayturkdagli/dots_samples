@@ -1,6 +1,5 @@
-﻿using Extensions;
-using LoadFromXML.Scripts.Authors;
-using LoadFromXML.Scripts.Component;
+﻿using LoadFromXML.Scripts.Extensions;
+using LoadFromXML.Scripts.Components;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;

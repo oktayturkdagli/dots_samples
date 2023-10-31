@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Data
+namespace LoadFromXML.Scripts.Data
 {
     public struct LaneletData
     {

@@ -1,7 +1,7 @@
 ﻿using System.Xml;
-using Data;
 using LoadFromXML.Scripts.Authors;
-using LoadFromXML.Scripts.Component;
+using LoadFromXML.Scripts.Components;
+using LoadFromXML.Scripts.Data;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;

@@ -1,6 +1,6 @@
 ﻿using Unity.Entities;
 
-namespace LoadFromXML.Scripts.Component
+namespace LoadFromXML.Scripts.Components
 {
     public struct PrefabComponent : IComponentData
     {

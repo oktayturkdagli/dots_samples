@@ -2,7 +2,7 @@
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace Extensions
+namespace LoadFromXML.Scripts.Extensions
 {
     public static class MeshExtension
     {
