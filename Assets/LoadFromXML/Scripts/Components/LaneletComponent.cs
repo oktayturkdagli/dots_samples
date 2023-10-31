@@ -1,6 +1,6 @@
 ﻿using Unity.Entities;
 
-namespace LoadFromXML.Scripts.ComponentAndTags
+namespace LoadFromXML.Scripts.Component
 {
     public struct LaneletComponent : IComponentData
     {
