@@ -2,7 +2,7 @@
 using Unity.Entities;
 using UnityEngine;
 
-namespace LoadFromXML.Scripts.AuthoringAndBakings
+namespace LoadFromXML.Scripts.Authors
 {
     public class PrefabAuthoring : MonoBehaviour
     {
