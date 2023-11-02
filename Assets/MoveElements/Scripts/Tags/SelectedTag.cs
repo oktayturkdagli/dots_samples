@@ -1,6 +1,6 @@
 ﻿using Unity.Entities;
 
-namespace MoveElements.Tags
+namespace MoveElements.Scripts.Tags
 {
     public struct SelectedTag : IComponentData
     {

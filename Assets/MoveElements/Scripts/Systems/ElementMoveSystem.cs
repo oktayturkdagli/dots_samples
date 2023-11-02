@@ -1,7 +1,6 @@
 ﻿using MoveElements.Scripts.Components;
-using MoveElements.Scripts.Data;
 using MoveElements.Scripts.Jobs;
-using MoveElements.Tags;
+using MoveElements.Scripts.Tags;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
