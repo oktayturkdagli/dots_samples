@@ -18,6 +18,7 @@ namespace MoveElements.Scripts.Systems
         [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
+            state.RequireForUpdate<InputComponent>();
             state.RequireForUpdate<SelectedTag>();
         }
         
@@ -30,25 +31,26 @@ namespace MoveElements.Scripts.Systems
         public void OnUpdate(ref SystemState state)
         {
             var deltaTime = SystemAPI.Time.DeltaTime;
-            ScheduleJobs(ref state, deltaTime);
+            var inputComponent = SystemAPI.GetSingleton<InputComponent>();
+            ScheduleJobs(ref state, deltaTime, inputComponent);
         }
 
         [BurstCompile]
-        private void ScheduleJobs(ref SystemState state, float deltaTime)
+        private void ScheduleJobs(ref SystemState state, float deltaTime, InputComponent inputComponent, float speed = 10f)
         {
-            var elementMoveParallelJobHandle = ScheduleElementMoveJob(ref state, deltaTime);
-            state.Dependency = elementMoveParallelJobHandle;
-            elementMoveParallelJobHandle.Complete();
+            var elementMovementParallelJobHandle = ScheduleElementMoveJob(ref state, deltaTime, inputComponent, speed);
+            state.Dependency = elementMovementParallelJobHandle;
+            elementMovementParallelJobHandle.Complete();
         }
         
         [BurstCompile]
-        private JobHandle ScheduleElementMoveJob(ref SystemState state, float deltaTime)
+        private JobHandle ScheduleElementMoveJob(ref SystemState state, float deltaTime, InputComponent inputComponent, float speed = 10f)
         {
             var query = new EntityQueryBuilder(Allocator.Temp)
                 .WithAllRW<ElementComponent, LocalTransform>()
                 .Build(state.EntityManager);
             
-            var movementDirection = new float3(1 * deltaTime, 0, 0);
+            var movementDirection = new float3(inputComponent.axisX * deltaTime, 0, inputComponent.axisY * deltaTime) * speed;
             var elementMoveParallelJobHandle = new ElementMovementParallelJob
             {
                 MovementDirection = movementDirection
