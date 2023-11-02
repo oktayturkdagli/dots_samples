@@ -49,7 +49,7 @@ namespace MoveElements.Scripts.Systems
             var ecbForElement = SystemAPI.GetSingleton<EndInitializationEntityCommandBufferSystem.Singleton>()
                 .CreateCommandBuffer(state.WorldUnmanaged).AsParallelWriter();
             
-            var elementInstantiateParallelJobHandle = new ElementInstantiateParallelJob
+            var elementInstantiateParallelJobHandle = new ElementCreationParallelJob
             {
                 SortKey = 0,
                 Ecb = ecbForElement,

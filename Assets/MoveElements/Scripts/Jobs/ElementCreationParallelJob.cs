@@ -10,7 +10,7 @@ using Unity.Transforms;
 namespace MoveElements.Scripts.Jobs
 {
     [BurstCompile]
-    public struct ElementInstantiateParallelJob : IJobParallelFor
+    public struct ElementCreationParallelJob : IJobParallelFor
     {
         [ReadOnly] public NativeArray<ElementData> ElementDataNativeArray;
         [ReadOnly] public Entity ElementEntity;

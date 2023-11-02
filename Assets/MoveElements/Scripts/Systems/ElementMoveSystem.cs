@@ -1,6 +1,7 @@
 ﻿using MoveElements.Scripts.Components;
 using MoveElements.Scripts.Data;
 using MoveElements.Scripts.Jobs;
+using MoveElements.Tags;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
@@ -17,7 +18,7 @@ namespace MoveElements.Scripts.Systems
         [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
-            state.RequireForUpdate<ElementComponent>();
+            state.RequireForUpdate<SelectedTag>();
         }
         
         [BurstCompile]
@@ -48,7 +49,7 @@ namespace MoveElements.Scripts.Systems
                 .Build(state.EntityManager);
             
             var movementDirection = new float3(1 * deltaTime, 0, 0);
-            var elementMoveParallelJobHandle = new ElementMoveParallelJob
+            var elementMoveParallelJobHandle = new ElementMovementParallelJob
             {
                 MovementDirection = movementDirection
             }.ScheduleParallel(query, state.Dependency);

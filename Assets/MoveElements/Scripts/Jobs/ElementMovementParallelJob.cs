@@ -10,7 +10,7 @@ namespace MoveElements.Scripts.Jobs
 {
     [BurstCompile]
     [StructLayout(LayoutKind.Auto)]
-    public partial struct ElementMoveParallelJob : IJobEntity
+    public partial struct ElementMovementParallelJob : IJobEntity
     {
         [ReadOnly] public float3 MovementDirection;
 
