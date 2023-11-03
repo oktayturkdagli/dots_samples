@@ -1,6 +1,6 @@
 ﻿using Unity.Entities;
 
-namespace MoveOsm.Scripts.Components
+namespace MoveCurvit.Scripts.Components
 {
     public struct InputComponent : IComponentData
     {

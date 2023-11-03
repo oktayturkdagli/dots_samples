@@ -123,6 +123,78 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &13610606
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 13610610}
+  - component: {fileID: 13610609}
+  - component: {fileID: 13610608}
+  - component: {fileID: 13610607}
+  m_Layer: 0
+  m_Name: --Resource--
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &13610607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13610606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f88161b6bbe4a8a8c92c7285b5c7918, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curvitLoadPath: Assets/MoveCurvit/dots_test.osm
+--- !u!114 &13610608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13610606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1e9b1c18f874a2aaf146468228e91a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeScale: 1
+--- !u!114 &13610609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13610606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78f31a46237d4d2cb1cf6c83b09d6a77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &13610610
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13610606}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1032769933
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,7 +204,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1032769935}
-  - component: {fileID: 1032769934}
   m_Layer: 0
   m_Name: ---Mover---
   m_TagString: Untagged
@@ -140,18 +211,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1032769934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1032769933}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ecec84647974fab9101dc02b0006cd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1032769935
 Transform:
   m_ObjectHideFlags: 0
@@ -481,5 +540,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 1531189420}
   - {fileID: 2094437981}
+  - {fileID: 13610610}
   - {fileID: 1032769935}
   - {fileID: 1248858902}

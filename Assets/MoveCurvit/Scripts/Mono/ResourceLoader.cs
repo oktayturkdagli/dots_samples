@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace MoveOsm.Scripts.Mono
+namespace MoveCurvit.Scripts.Mono
 {
     public class ResourceLoader : MonoBehaviour
     {
@@ -13,6 +13,7 @@ namespace MoveOsm.Scripts.Mono
             Resources.LoadAsync("Materials/Mat_Line_Arrow_Bidirectional_Solid");
             Resources.LoadAsync("Materials/Mat_Line_Arrow_Common_Dashed");
             Resources.LoadAsync("Materials/Mat_Line_Arrow_Common_Solid");
+            Resources.LoadAsync("Materials/Mat_Node");
 
             //Load Prefabs
             Resources.Load("Prefabs/Line");
