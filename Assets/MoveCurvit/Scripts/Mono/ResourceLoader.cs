@@ -17,6 +17,7 @@ namespace MoveCurvit.Scripts.Mono
 
             //Load Prefabs
             Resources.Load("Prefabs/Line");
+            Resources.Load("Prefabs/WayLineRenderer");
         
             //Load Mesh Assets
             Resources.GetBuiltinResource<Mesh>("Sphere.fbx");

@@ -20,12 +20,12 @@ namespace MoveCurvit.Scripts.Systems
             var inputEntity = state.EntityManager.CreateEntity();
             state.EntityManager.AddComponentData(inputEntity, new InputComponent());
         }
-
+        
         [BurstCompile]
         public void OnDestroy(ref SystemState state)
         {
         }
-
+        
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
@@ -33,7 +33,7 @@ namespace MoveCurvit.Scripts.Systems
             {
                 var query = new EntityQueryBuilder(Allocator.Temp)
                     .WithAll<NodeComponent>()
-                    .WithNone<SelectedTag>()
+                    .WithNone<BuildVisualTag, SelectedTag>()
                     .Build(state.EntityManager);
             
                 var entityArray = query.ToEntityArray(Allocator.Temp);

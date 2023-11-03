@@ -2,7 +2,7 @@
 
 namespace MoveCurvit.Scripts.Tags
 {
-    public class BuildVisualTag : IComponentData
+    public struct BuildVisualTag : IComponentData
     {
         
     }
