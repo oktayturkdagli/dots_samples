@@ -30,8 +30,7 @@ namespace MoveCurvit.Scripts.Systems.VisualSystems
 
         public void OnUpdate(ref SystemState state)
         {
-            var ecb = SystemAPI.GetSingleton<EndInitializationEntityCommandBufferSystem.Singleton>()
-                .CreateCommandBuffer(state.WorldUnmanaged);
+            var ecb = SystemAPI.GetSingleton<EndInitializationEntityCommandBufferSystem.Singleton>().CreateCommandBuffer(state.WorldUnmanaged);
             var hybridRenderer = state.World.GetOrCreateSystemManaged<EntitiesGraphicsSystem>();
 
             foreach (var (laneletData, materialMeshInfo, laneletEntity) in
@@ -46,21 +45,17 @@ namespace MoveCurvit.Scripts.Systems.VisualSystems
                 NativeList<float3> rightWayPositions = new NativeList<float3>(rightWayNodeDataBuffer.Length, Allocator.Temp);
 
                 for (var i = 0; i < leftWayNodeDataBuffer.Length; i++)
-                    leftWayPositions.Add(SystemAPI.GetComponentRO<NodeComponent>(leftWayNodeDataBuffer[i].NodeEntity).ValueRO
-                        .Position);
+                    leftWayPositions.Add(SystemAPI.GetComponentRO<NodeComponent>(leftWayNodeDataBuffer[i].NodeEntity).ValueRO.Position);
             
                 for (var i = 0; i < rightWayNodeDataBuffer.Length; i++)
-                    rightWayPositions.Add(SystemAPI.GetComponentRO<NodeComponent>(rightWayNodeDataBuffer[i].NodeEntity).ValueRO
-                        .Position);
+                    rightWayPositions.Add(SystemAPI.GetComponentRO<NodeComponent>(rightWayNodeDataBuffer[i].NodeEntity).ValueRO.Position);
 
                 var mesh = MeshExtensions.BuildMeshForLanelet(leftWayPositions, rightWayPositions);
                 var meshBatchID = hybridRenderer.RegisterMesh(mesh);
                 var meshReference = new LaneletDataHolder(mesh, meshBatchID);
-
                 materialMeshInfo.ValueRW.MeshID = meshBatchID;
             
                 DataHolder.LaneletToMeshDictionary.Add(laneletData.ValueRO.ID, meshReference);
-                
                 ecb.RemoveComponent<BuildVisualTag>(laneletEntity);
             }
         }

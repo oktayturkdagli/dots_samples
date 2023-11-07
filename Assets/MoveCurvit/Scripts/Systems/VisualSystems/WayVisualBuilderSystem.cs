@@ -27,8 +27,7 @@ namespace MoveCurvit.Scripts.Systems.VisualSystems
 
         public void OnUpdate(ref SystemState state)
         {
-            var ecb = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>()
-                .CreateCommandBuffer(state.WorldUnmanaged);
+            var ecb = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>().CreateCommandBuffer(state.WorldUnmanaged);
             var lineRendererForWayPrefab = Resources.Load<LineRendererDataHolder>("Prefabs/WayLineRenderer");
             
             foreach (var (wayData, nodeReferenceBuffer, wayEntity) in SystemAPI
