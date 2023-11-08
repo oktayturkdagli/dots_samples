@@ -1,23 +1,29 @@
 ﻿using MoveCurvit.Scripts.Components;
-using System.Runtime.InteropServices;
 using Unity.Burst;
 using Unity.Collections;
-using Unity.Entities;
+using Unity.Jobs;
 using Unity.Mathematics;
 using Unity.Transforms;
 
 namespace MoveCurvit.Scripts.Jobs
 {
     [BurstCompile]
-    [StructLayout(LayoutKind.Auto)]
-    public partial struct NodeMovementParallelJob : IJobEntity
+    public struct NodeMovementParallelJob : IJobParallelFor
     {
+        public NativeArray<NodeComponent> NodeComponentsNativeArray;
+        public NativeArray<LocalTransform> LocalTransformsNativeArray;
         [ReadOnly] public float3 MovementDirection;
-
-        private void Execute(ref NodeComponent nodeComponent, ref LocalTransform localTransform)
+        
+        public void Execute(int index)
         {
+            var nodeComponent = NodeComponentsNativeArray[index];
+            var localTransform = LocalTransformsNativeArray[index];
+            
             nodeComponent.Position += MovementDirection;
             localTransform.Position = nodeComponent.Position;
+            
+            NodeComponentsNativeArray[index] = nodeComponent;
+            LocalTransformsNativeArray[index] = localTransform;
         }
     }
 }
