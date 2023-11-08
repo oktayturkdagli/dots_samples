@@ -29,49 +29,15 @@ namespace MoveCurvit.Scripts.Systems
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                var query = new EntityQueryBuilder(Allocator.Temp)
-                    .WithAll<NodeComponent>()
-                    .WithNone<BuildVisualTag, SelectedTag>()
-                    .Build(state.EntityManager);
+            var horizontalInput = Input.GetAxis("Horizontal");
+            var verticalInput = Input.GetAxis("Vertical");
             
-                var entityArray = query.ToEntityArray(Allocator.Temp);
-                var ecb = new EntityCommandBuffer(Allocator.Temp);
-                foreach (var entity in entityArray)
+            state.EntityManager.SetComponentData(SystemAPI.GetSingletonEntity<InputComponent>(), new InputComponent 
                 {
-                    ecb.AddComponent<SelectedTag>(entity);
+                    AxisX = horizontalInput, 
+                    AxisY = verticalInput
                 }
-                ecb.Playback(state.EntityManager);
-            }
-            else if (Input.GetKeyDown(KeyCode.U))
-            {
-                var query = new EntityQueryBuilder(Allocator.Temp)
-                    .WithAll<NodeComponent, SelectedTag>()
-                    .Build(state.EntityManager);
-            
-                var entityArray = query.ToEntityArray(Allocator.Temp);
-                var ecb = new EntityCommandBuffer(Allocator.Temp);
-                foreach (var entity in entityArray)
-                {
-                    ecb.RemoveComponent<SelectedTag>(entity);
-                }
-                ecb.Playback(state.EntityManager);
-            }
-            else
-            {
-                var horizontalInput = Input.GetAxis("Horizontal");
-                var verticalInput = Input.GetAxis("Vertical");
-            
-                state.EntityManager.SetComponentData(
-                    SystemAPI.GetSingletonEntity<InputComponent>(),
-                    new InputComponent 
-                    {
-                        AxisX = horizontalInput, 
-                        AxisY = verticalInput
-                    }
-                );
-            }
+            );
         }
     }
 }

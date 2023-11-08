@@ -45,7 +45,6 @@ namespace MoveCurvit.Scripts.Systems
             var deltaTime = SystemAPI.Time.DeltaTime;
             var inputComponent = SystemAPI.GetSingleton<InputComponent>();
             var movementDirection = new float3(inputComponent.AxisX * deltaTime, 0, inputComponent.AxisY * deltaTime) * 10f;
-            
             ScheduleJobs(ref state, movementDirection);
         }
 
@@ -54,6 +53,7 @@ namespace MoveCurvit.Scripts.Systems
         {
             var nodeMovementParallelJobHandle = ScheduleNodeMoveJob(ref state, movementDirection);
             state.Dependency = nodeMovementParallelJobHandle;
+            
         }
         
         [BurstCompile]
@@ -68,13 +68,14 @@ namespace MoveCurvit.Scripts.Systems
                 LocalTransformsNativeArray = nodeLocalTransforms,
                 MovementDirection = movementDirection,
             }.Schedule(nodeComponents.Length, nodeComponents.Length / 4, state.Dependency);
-           
+            nodeMoveParallelJobHandle.Complete();
+            
             nodeEntitiesQuery.CopyFromComponentDataArray(nodeComponents);
             nodeEntitiesQuery.CopyFromComponentDataArray(nodeLocalTransforms);
 
             nodeComponents.Dispose();
             nodeLocalTransforms.Dispose();
-           
+            
             return nodeMoveParallelJobHandle;
         }
     }
