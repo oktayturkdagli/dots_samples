@@ -22,7 +22,7 @@ namespace MoveCurvit.Scripts.Systems
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<InputComponent>();
-            state.RequireForUpdate<SelectedTag>();
+            state.RequireForUpdate<SelectedNodeTag>();
             state.RequireForUpdate<EndInitializationEntityCommandBufferSystem.Singleton>();
             
             state.RequireForUpdate<NodeComponent>();
@@ -30,6 +30,7 @@ namespace MoveCurvit.Scripts.Systems
             
             nodeEntitiesQuery = new EntityQueryBuilder(Allocator.Temp)
                 .WithAllRW<NodeComponent, LocalTransform>()
+                .WithAll<SelectedNodeTag>()
                 .Build(ref state);
         }
         

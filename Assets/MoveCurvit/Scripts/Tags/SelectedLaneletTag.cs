@@ -2,7 +2,7 @@
 
 namespace MoveCurvit.Scripts.Tags
 {
-    public struct SelectedTag : IComponentData
+    public struct SelectedLaneletTag : IComponentData
     {
         
     }

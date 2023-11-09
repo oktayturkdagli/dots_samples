@@ -15,7 +15,7 @@ namespace MoveCurvit.Scripts.Systems.VisualSystems
         [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
-            state.RequireForUpdate<SelectedTag>();
+            state.RequireForUpdate<SelectedNodeTag>();
         }
 
         [BurstCompile]

@@ -29,47 +29,67 @@ namespace MoveCurvit.Scripts.Systems
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.N))
             {
-                var ecb = new EntityCommandBuffer(Allocator.Temp);
-                SelectNodes(ref state, ref ecb);
+                Debug.Log("N");
+                SelectUnselect<NodeComponent, SelectedNodeTag>(ref state, true);
             }
-            else if (Input.GetKeyDown(KeyCode.E))
+            else if (Input.GetKeyDown(KeyCode.W))
             {
-                var ecb = new EntityCommandBuffer(Allocator.Temp);
-                UnselectNodes(ref state, ref ecb);
+                Debug.Log("W");
+                SelectUnselect<WayComponent, SelectedWayTag>(ref state, true);
             }
-        }
-
-        [BurstCompile]
-        private void SelectNodes(ref SystemState state, ref EntityCommandBuffer ecb)
-        {
-            var query = new EntityQueryBuilder(Allocator.Temp)
-                .WithAll<NodeComponent>()
-                .WithNone<BuildVisualTag, SelectedTag>()
-                .Build(state.EntityManager);
-            
-            var entityArray = query.ToEntityArray(Allocator.Temp);
-            foreach (var entity in entityArray)
+            else if (Input.GetKeyDown(KeyCode.L))
             {
-                ecb.AddComponent<SelectedTag>(entity);
+                Debug.Log("L");
+                SelectUnselect<LaneletComponent, SelectedLaneletTag>(ref state, true);
             }
-            ecb.Playback(state.EntityManager);
         }
         
         [BurstCompile]
-        private void UnselectNodes(ref SystemState state, ref EntityCommandBuffer ecb)
+        private void SelectUnselect<TComponent, TSelectedTag>(ref SystemState state, bool select)
+            where TComponent : struct, IComponentData
+            where TSelectedTag : unmanaged, IComponentData
         {
-            var query = new EntityQueryBuilder(Allocator.Temp)
-                .WithAll<NodeComponent, SelectedTag>()
+            var query = new EntityQueryBuilder(Allocator.TempJob)
+                .WithAll<TComponent>()
+                .WithNone<BuildVisualTag, TSelectedTag>()
                 .Build(state.EntityManager);
+            var entities = query.ToEntityArray(Allocator.TempJob);
             
-            var entityArray = query.ToEntityArray(Allocator.Temp);
-            foreach (var entity in entityArray)
+            
+            var ecb = new EntityCommandBuffer(Allocator.TempJob);
+            if (select)
             {
-                ecb.RemoveComponent<SelectedTag>(entity);
+                SelectEntities<TSelectedTag>(ref ecb, ref entities, 16);
+            }
+            else
+            {
+                UnselectEntities<TSelectedTag>(ref ecb, ref entities);
             }
             ecb.Playback(state.EntityManager);
+            entities.Dispose();
+            ecb.Dispose();
+        }
+        
+        [BurstCompile]
+        private void SelectEntities<TSelectedTag>(ref EntityCommandBuffer ecb, ref NativeArray<Entity> entities, int count)
+            where TSelectedTag : unmanaged, IComponentData
+        {
+            for (var i = 0; i < Mathf.Min(count, entities.Length); i++)
+            {
+                ecb.AddComponent<TSelectedTag>(entities[i]);
+            }
+        }
+        
+        [BurstCompile]
+        private void UnselectEntities<TSelectedTag>(ref EntityCommandBuffer ecb, ref NativeArray<Entity> entities)
+            where TSelectedTag : struct, IComponentData
+        {
+            foreach (var entity in entities)
+            {
+                ecb.RemoveComponent<TSelectedTag>(entity);
+            }
         }
     }
 }
