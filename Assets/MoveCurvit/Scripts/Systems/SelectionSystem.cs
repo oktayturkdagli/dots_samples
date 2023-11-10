@@ -57,7 +57,6 @@ namespace MoveCurvit.Scripts.Systems
                 .Build(state.EntityManager);
             var entities = query.ToEntityArray(Allocator.TempJob);
             
-            
             var ecb = new EntityCommandBuffer(Allocator.TempJob);
             if (select)
             {

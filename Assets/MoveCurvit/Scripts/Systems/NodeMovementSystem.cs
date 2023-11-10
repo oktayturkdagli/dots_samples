@@ -17,6 +17,8 @@ namespace MoveCurvit.Scripts.Systems
     public partial struct NodeMovementSystem : ISystem
     {
         private EntityQuery nodeEntitiesQuery;
+        private EntityQuery wayEntitiesQuery;
+        private EntityQuery laneletEntitiesQuery;
             
         [BurstCompile]
         public void OnCreate(ref SystemState state)
@@ -31,6 +33,16 @@ namespace MoveCurvit.Scripts.Systems
             nodeEntitiesQuery = new EntityQueryBuilder(Allocator.Temp)
                 .WithAllRW<NodeComponent, LocalTransform>()
                 .WithAll<SelectedNodeTag>()
+                .Build(ref state);
+            
+            wayEntitiesQuery = new EntityQueryBuilder(Allocator.Temp)
+                .WithAllRW<WayComponent, LocalTransform>()
+                .WithAll<SelectedWayTag>()
+                .Build(ref state);
+            
+            laneletEntitiesQuery = new EntityQueryBuilder(Allocator.Temp)
+                .WithAllRW<LaneletComponent, LocalTransform>()
+                .WithAll<SelectedLaneletTag>()
                 .Build(ref state);
         }
         
@@ -48,13 +60,17 @@ namespace MoveCurvit.Scripts.Systems
             var movementDirection = new float3(inputComponent.AxisX * deltaTime, 0, inputComponent.AxisY * deltaTime) * 10f;
             ScheduleJobs(ref state, movementDirection);
         }
-
+        
         [BurstCompile]
         private void ScheduleJobs(ref SystemState state, float3 movementDirection)
         {
             var nodeMovementParallelJobHandle = ScheduleNodeMoveJob(ref state, movementDirection);
-            state.Dependency = nodeMovementParallelJobHandle;
-            
+            var wayMovementParallelJobHandle = ScheduleWayMoveJob(ref state, movementDirection);
+            var laneletMovementParallelJobHandle = ScheduleLaneletMoveJob(ref state, movementDirection);
+            state.Dependency = JobHandle.CombineDependencies(
+                nodeMovementParallelJobHandle, 
+                wayMovementParallelJobHandle, 
+                laneletMovementParallelJobHandle);
         }
         
         [BurstCompile]
@@ -63,13 +79,13 @@ namespace MoveCurvit.Scripts.Systems
             var nodeComponents = nodeEntitiesQuery.ToComponentDataArray<NodeComponent>(Allocator.TempJob);
             var nodeLocalTransforms = nodeEntitiesQuery.ToComponentDataArray<LocalTransform>(Allocator.TempJob);
          
-            var nodeMoveParallelJobHandle = new NodeMovementParallelJob
+            var nodeMovementParallelJobHandle = new NodeMovementParallelJob
             {
                 NodeComponentsNativeArray = nodeComponents,
                 LocalTransformsNativeArray = nodeLocalTransforms,
                 MovementDirection = movementDirection,
             }.Schedule(nodeComponents.Length, nodeComponents.Length / 4, state.Dependency);
-            nodeMoveParallelJobHandle.Complete();
+            nodeMovementParallelJobHandle.Complete();
             
             nodeEntitiesQuery.CopyFromComponentDataArray(nodeComponents);
             nodeEntitiesQuery.CopyFromComponentDataArray(nodeLocalTransforms);
@@ -77,7 +93,43 @@ namespace MoveCurvit.Scripts.Systems
             nodeComponents.Dispose();
             nodeLocalTransforms.Dispose();
             
-            return nodeMoveParallelJobHandle;
+            return nodeMovementParallelJobHandle;
+        }
+        
+        [BurstCompile]
+        private JobHandle ScheduleWayMoveJob(ref SystemState state, float3 movementDirection)
+        {
+            var wayComponents = wayEntitiesQuery.ToComponentDataArray<WayComponent>(Allocator.TempJob);
+            
+            var wayMovementParallelJobHandle = new WayMovementParallelJob
+            {
+                WayComponentsNativeArray = wayComponents,
+                MovementDirection = movementDirection,
+            }.Schedule(wayComponents.Length, wayComponents.Length / 4, state.Dependency);
+            wayMovementParallelJobHandle.Complete();
+            
+            wayEntitiesQuery.CopyFromComponentDataArray(wayComponents);
+            wayComponents.Dispose();
+            
+            return wayMovementParallelJobHandle;
+        }
+        
+        [BurstCompile]
+        private JobHandle ScheduleLaneletMoveJob(ref SystemState state, float3 movementDirection)
+        {
+            var laneletComponents = laneletEntitiesQuery.ToComponentDataArray<LaneletComponent>(Allocator.TempJob);
+            
+            var laneletMovementParallelJobHandle = new LaneletMovementParallelJob
+            {
+                LaneletComponentsNativeArray = laneletComponents,
+                MovementDirection = movementDirection,
+            }.Schedule(laneletComponents.Length, laneletComponents.Length / 4, state.Dependency);
+            laneletMovementParallelJobHandle.Complete();
+            
+            laneletEntitiesQuery.CopyFromComponentDataArray(laneletComponents);
+            laneletComponents.Dispose();
+            
+            return laneletMovementParallelJobHandle;
         }
     }
 }
